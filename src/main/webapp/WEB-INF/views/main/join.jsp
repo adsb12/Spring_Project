@@ -15,8 +15,8 @@
 <script src= "${path}/resources/js/bootstrap.js"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery.min.js" charset = "UTF-8"></script>
-<script src="${path }/resource/js/address.js" charset = "UTF-8"></script>
-<script src="${path }/resource/js/join.js" charset="UTF-8"></script>
+<script src="${path }/resources/js/address.js" charset = "UTF-8"></script>
+<script src="${path }/resources/js/join.js" charset="UTF-8"></script>
 
 <script>
 	$(document).ready(function() {
