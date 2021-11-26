@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bbs.service.UsersService;
 import com.bbs.vo.Authmail;
+import com.bbs.vo.Users;
 
 @Controller
 public class MainController {
@@ -67,11 +68,17 @@ public class MainController {
 	// url 패턴이 'path/mailAuth' 일 경우
 	@RequestMapping(value = "/mailAuth", method = RequestMethod.POST)
 	@ResponseBody
-	public String mailAuth(Authmail Authmail) throws Exception {
+	public String mailAuth(Authmail authmail) throws Exception {
 		
-		
-		
-		return null;
+		return usersService.checkAuthnum(authmail) + "";
+	}
+	
+	// url 패턴이 'path/joinAction' 일 경우
+	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
+	public String joinAction(Users users, String addr1, String addr2, String addr3) throws Exception {
+		users.setUser_addr(addr1 + " " + addr2 + " " + addr3);
+		usersService.joinAction(users);
+		return "redirect:/login";
 	}
 	
 }

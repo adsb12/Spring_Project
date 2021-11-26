@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.bbs.vo.Authmail;
+import com.bbs.vo.Users;
 
 @Repository
 public class UsersDAOImpl implements UsersDAO {
@@ -38,6 +39,11 @@ public class UsersDAOImpl implements UsersDAO {
 	@Override
 	public void deleteAuthmail(String user_mail) throws Exception {
 		sqlSession.delete(SESSION + ".deleteAuthmail", user_mail);
+	}
+
+	@Override
+	public void join(Users users) throws Exception {
+		sqlSession.insert(SESSION + ".join", users);
 	}
 
 }

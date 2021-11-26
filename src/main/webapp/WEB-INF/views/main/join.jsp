@@ -211,7 +211,7 @@
 										
 										<!-- 상세 주소 -->
 										<div class = "form-group cols-sm12 col-md-12 col-lg-12">
-												<input type = "text" class = "form-control" name = "addr3" placeholder = "상세 주소">
+												<input type = "text" class = "form-control" id= "addr3" name = "addr3" placeholder = "상세 주소">
 										</div>
 								</div>
 						

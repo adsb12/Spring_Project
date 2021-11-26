@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import com.bbs.dao.UsersDAO;
 import com.bbs.util.Mail;
 import com.bbs.vo.Authmail;
+import com.bbs.vo.Users;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -108,6 +109,27 @@ public class UsersServiceImpl implements UsersService {
 			result = -1;
 		}
 		return result;
+	}
+
+	@Override
+	public int checkAuthnum(Authmail authmail) throws Exception {
+		
+		int result = 1;
+		Integer exist = dao.getAuthnum(authmail.getUser_mail());
+		
+		// 맞을 때
+		if(exist.equals(authmail.getAuth_num())) {
+			dao.deleteAuthmail(authmail.getUser_mail());
+			result = 0;
+		// 틀릴 때
+		}
+		
+		return result;
+	}
+
+	@Override
+	public void joinAction(Users users) throws Exception {
+		dao.join(users);
 	}
 
 }
