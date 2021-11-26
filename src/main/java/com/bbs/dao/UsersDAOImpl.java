@@ -30,11 +30,14 @@ public class UsersDAOImpl implements UsersDAO {
 		sqlSession.insert(SESSION + ".setAuthnum", authmail);
 	}
 
-	
-
 	@Override
 	public void resetAuthnum(Authmail authmail) throws Exception {
 		sqlSession.update(SESSION + ".resetAuthnum", authmail);
+	}
+
+	@Override
+	public void deleteAuthmail(String user_mail) throws Exception {
+		sqlSession.delete(SESSION + ".deleteAuthmail", user_mail);
 	}
 
 }
