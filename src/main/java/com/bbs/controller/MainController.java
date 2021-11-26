@@ -81,4 +81,18 @@ public class MainController {
 		return "redirect:/login";
 	}
 	
+	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
+	public String loginAction(Users users) throws Exception {
+		
+		int result = usersService.loginAction(users);
+		
+		if(result == 0) {
+			
+		} else {
+			
+		}
+		
+		return null;
+	}
+	
 }

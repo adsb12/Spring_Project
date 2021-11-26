@@ -8,4 +8,5 @@ public interface UsersService {
 	public int setAuthnum(String user_mail) throws Exception;
 	public int checkAuthnum(Authmail authmail) throws Exception;
 	public void joinAction(Users users) throws Exception;
+	public int loginAction(Users users) throws Exception;
 }

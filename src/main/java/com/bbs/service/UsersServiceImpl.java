@@ -132,4 +132,15 @@ public class UsersServiceImpl implements UsersService {
 		dao.join(users);
 	}
 
+	@Override
+	public int loginAction(Users users) throws Exception {
+		int result = 0;
+		
+		Users rs = dao.login(users);
+		
+		if(rs == null) result = 1;
+
+		return result;
+	}
+
 }

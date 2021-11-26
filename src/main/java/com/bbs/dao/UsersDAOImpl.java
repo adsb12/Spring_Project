@@ -46,4 +46,9 @@ public class UsersDAOImpl implements UsersDAO {
 		sqlSession.insert(SESSION + ".join", users);
 	}
 
+	@Override
+	public Users login(Users users) throws Exception {
+		return sqlSession.selectOne(SESSION + ".login", users);
+	}
+
 }

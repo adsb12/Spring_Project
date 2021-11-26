@@ -10,4 +10,5 @@ public interface UsersDAO {
 	public void resetAuthnum(Authmail authmail) throws Exception;
 	public void deleteAuthmail(String user_mail) throws Exception;
 	public void join(Users users) throws Exception;
+	public Users login(Users users) throws Exception;
 }
