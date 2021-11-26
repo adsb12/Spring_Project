@@ -40,16 +40,18 @@ public class UsersServiceImpl implements UsersService {
 		
 		Random rd = new Random();
 		
-		int auth_num = rd.nextInt(9999) + 1; // 1 ~ 9999 까지 랜덤 숫자가 나온다.
+		// 4자ㅣ의 임의의 인증번호 생성
+		int auth_num = rd.nextInt(9999) + 1; 
 		
 		String from 		= "1223020@donga.ac.kr"; // 보내는 곳
 		String to 			= 	user_mail;	// 받는 곳
 		String subject 	= "인증번호 메일";	// 메일의 제목
 		String content 	= "다음 인증번호를 입력하세요. <br> <h2>" + auth_num +"</h2>"; // 메일의 내용
 
+		// 해당 email 주소의 인증번호가 존재하는지 확인
 		Integer exist = dao.getAuthnum(to);
 		
-		if(exist != null) dao.setAuthnum(new Authmail(to, auth_num));
+		if(exist == null) dao.setAuthnum(new Authmail(to, auth_num));
 		else				  dao.resetAuthnum(new Authmail(to, auth_num));
 			
 		

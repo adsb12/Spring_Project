@@ -14,13 +14,6 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src= "${path}/resources/js/bootstrap.js"></script>
 
-<script>
-	$(document).ready(function() {
-		var msg = '${msg}';
-		if(msg != null && msg != '') alert(msg);
-	});
-</script>
-
 </head>
 <body>
 
@@ -132,5 +125,11 @@
 		<div class = "col-lg-4"></div>
 </div>
 <%-- 메인 컨텐츠 종료 --%>
+<script>
+	$(document).ready(function() {
+		var msg = '${msg}';
+		if(msg != null && msg != '') alert(msg);
+	});
+</script>
 </body>
 </html>
