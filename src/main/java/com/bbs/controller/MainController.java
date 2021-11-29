@@ -100,6 +100,7 @@ public class MainController {
 		return url;
 	}
 	
+	// url 패턴이 'path/logout' 일 경우
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		
@@ -108,4 +109,10 @@ public class MainController {
 		return "redirect:/";
 	}
 	
+	// url 패턴이 'path/bbs' 일 경우
+		@RequestMapping(value = "/bbs", method = RequestMethod.GET)
+		public String bbs(Model model) throws Exception {
+			
+			return "bbs/bbs";
+		}
 }
