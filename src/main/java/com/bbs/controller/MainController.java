@@ -1,6 +1,7 @@
 package com.bbs.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bbs.service.UsersService;
 import com.bbs.vo.Authmail;
@@ -82,17 +84,20 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
-	public String loginAction(Users users) throws Exception {
+	public String loginAction(Users users, HttpSession session, RedirectAttributes ra) throws Exception {
 		
 		int result = usersService.loginAction(users);
+		String url = null;
 		
 		if(result == 0) {
-			
+			session.setAttribute("user_id", users.getUser_id());
+			url = "redirect:/";
 		} else {
-			
+			ra.addFlashAttribute("msg", "로그인 정보가 일치하지 않습니다.");
+			url = "redirect:/login";
 		}
 		
-		return null;
+		return url;
 	}
 	
 }
