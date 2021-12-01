@@ -49,37 +49,42 @@
 												<!-- '/n		-> 	'<br>'	-->
 												<%-- └ 바꿀때 = 문자열.replaceAll(" /n ", "<br>") --%>
 												
-												<td>${boarder.title}</td>
-										</tr>
-										<tr>
-												<td>작성자</td>
-												<td>${boarder.writer}</td>
-										</tr>
-										<tr>
-												<td>작성일</td>
-												<td>${boarder.reg_date}</td>
-										</tr>
-										<tr>
-												<td>내용</td>
-												<td style= "min-height: 200px; text-align: left;">${boarder.contents}</td>
-										</tr>
-								</tbody>
-						</table>
-						<a href = "../bbs" class="btn btn-default">목록</a>		<!-- ↓ 매우 유용 -->
-						<c:if test="${user_id eq boarder.writer}">
-						<a href = "./update?boarder_id=${boarder.boarder_id}" class="btn btn-success">수정</a>			
-						<a onclick = "return confirm('정말 삭제하시겠습니까?')" href = "./deleteAction?boarder_id=${boarder.boarder_id}" class="btn btn-danger">삭제</a>			
-						<!-- ↑ onclick : a 태그를 클릭하면 -->
-						</c:if>						
-				</form>
-		</div>
+						<td>${map.boarder.title }</td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td>${map.boarder.writer }</td>
+					</tr>
+					<tr>
+						<td>작성일</td>
+						<td>${map.boarder.reg_date }</td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td style="min-height: 200px; text-align: left;">${map.boarder.contents }</td>
+					</tr>
+					<c:if test="${not empty map.uploadFile}">
+					<tr>
+						<td>첨부파일</td>
+						<td><a href="./downloadAction?boarder_id=${map.uploadFile.boarder_id}&file_realName=${map.uploadFile.file_realName}">${map.uploadFile.file_name }</a></td>
+					</tr>
+					</c:if>
+				</tbody>
+			</table>
+			<a href="../bbs" class="btn btn-default">목록</a>
+			<c:if test="${user_id eq map.boarder.writer }">
+			<a href="./update?boarder_id=${map.boarder.boarder_id }" class="btn btn-success">수정</a>
+			<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="./deleteAction?boarder_id=${map.boarder.boarder_id }" class="btn btn-danger">삭제</a>
+			</c:if>
+		</form>
+	</div>
 </div>
-<%-- 글쓰기 양식 종료 --%>
+<!-- 게시글 보기 양식 종료 -->
 <script>
-	$(document).ready(function() {
-		var msg = '${msg}';
-		if(msg != null && msg != '') alert(msg);
-	});
+$(document).ready(function(){
+	var msg = '${msg}';
+	if(msg != null && msg != '') alert(msg);
+});
 </script>
 </body>
 </html>
