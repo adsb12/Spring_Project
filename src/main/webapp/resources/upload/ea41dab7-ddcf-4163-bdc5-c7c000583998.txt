@@ -1,0 +1,169 @@
+빨간줄 뜨면
+pom.xml -> <properties> -> java-version (11로 바꿈) -> org.springframework (4.3.8로 바꿈) -> 
+86번줄 inject -> 118번줄 </dependency> 밑에
+메모장에 붙여넣기
+<!-- mysql -->
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<version>8.0.27</version>
+</dependency>
+
+<!-- org.mybatis/mybatis -->
+<dependency>
+<groupId>org.mybatis</groupId>
+<artifactId>mybatis</artifactId>
+<version>3.5.7</version>
+</dependency>
+
+<!-- mybatis-spring -->
+<dependency>
+<groupId>org.mybatis</groupId>
+<artifactId>mybatis-spring</artifactId>
+<version>2.0.6</version>
+</dependency>
+
+<!-- spring-jdbc -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-jdbc</artifactId>
+<version>${org.springframework-version}</version>
+</dependency>
+
+src -> main -> web-inf -> web.xml -> 9번라인 root-context.xml root지우고 *변경
+
+31번줄 servlet-mapping밑에
+<!-- Character Encoding -->
+<filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>
+ 	org.springframework.web.filter.CharacterEncodingFilter
+    <filter-class>
+    <init-param>
+	<param-name>encoding</param-name>
+	<param-value>UTF-8</param-value>
+    <init-param>
+    <init-param>
+	<param-name>forceEncoding</param-name>
+	<param-value>true</param-value>
+    <init-param>
+</filter>
+<filter-mapping>
+    <filter-name>appServlet</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
+6번줄에 
+<welcome-file-list>
+<welcome-file>index.jsp</welcome-file>
+<welcome-file-list>
+
+</welcome-file-list>
+
+web-info -> spring ->root-context
+8번줄
+<!-- MySQL -->
+<bean class="org.springframeword.jdbc.datasource.DriverManagerDataSource"
+  id="dataSource">
+     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+     <property name="url" value="jdbc:mysql://127.0.0.1:3307/BBS?useSSL=false&amp;serverTimezone=Asia/Seoul" />
+     <property name="username" value="root" />
+     <property name="password" value="1234" />
+</bean>
+
+<!-- SqlSessionFactory -->
+<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+     <property name="dataSource" ref="dataSource" />
+     <!-- mybatis config file path -->
+     <property name="configLocation" value="classpath:mybatis-config.xml" />
+     <!-- mybatis mapper file path -->
+     <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
+</bean>
+
+<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession" destroy-method="clearCache">
+     <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+
+
+src/main/resources -> xml만드는것 같은데 잘 못봄 이름은 mybatis-config
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+</configuration>
+
+src/main/resources -> 폴더 만들기 folder -> name: mappers -> 안에 other XML파일 만들기 -> name: bbsMapper
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="come.bbs.mappers.bbs">
+
+
+</mapper>
+
+run-on-server Spring_Project 빼고 다 remove하고 finish
+
+console그쪽에 namespaces에 jdbc, mybatis, context 체크후 저장
+
+
+server 에 아파치톰캣 path -> /로 바꾸기
+
+src/main/java 에 패키지 com.bbs.service 만들기 -> 
+
+// service를 구성할 interface 표준 설계 작성
+interface UsersService 만들기 
+@Service
+public class UsersServiceImpl~~~
+public int check_id(String user_id) throws Exception;
+
+
+패키지 com.bbs.service -> class UsersServiceImpl 만들기 interface add눌러서 위에서 만든 인터페이스 연결
+
+HomeController에
+@Inject
+UsersService service; 전역으로
+
+public String home에 괄호 뒤에 throws Exception하고 logger.info 밑에
+service.check_id(null);
+
+src/main/java
+com.bbs.dao 패키지 만듬
+안에 UsersDAO 인터페이스 만듬
+public interface ~~
+public int check_id(String user_id) throws Exception;
+
+com.bbs.dao에 
+class UsersDAOImpl 만들기 add interface UsersDAO추가
+@Repository
+public class UsersDAOImpl~~~
+
+UsersService에 뭔가 함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

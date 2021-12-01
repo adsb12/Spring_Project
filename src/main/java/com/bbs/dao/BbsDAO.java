@@ -10,4 +10,5 @@ public interface BbsDAO {
 	public UploadFile getUploadFile(Integer boarder_id) throws Exception;
 	public UploadFile getUploadFile(String file_realName) throws Exception;
 	public void updateBoarder(Boarder boarder) throws Exception;
+	public void updateFile(UploadFile uploadFile) throws Exception;
 }
