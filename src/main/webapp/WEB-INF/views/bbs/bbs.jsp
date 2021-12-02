@@ -2,53 +2,6 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- JSTL과 EL을 이용해서 Sesseion에 있는 user_id 값을 가져와 user_id에 저장 -->
-<c:set var="user_id" value="${sessionScope.user_id }"/>
-
-<%--
-JSP 태그와 JSTL 태그의 변수 선언
-<% String user_id = "user"; %>
-<c:set var='user_id' value='user'/>
-
-JSP 태그와 JSTL 태그의 조건문
-<% 
-	if(user_id == null) {
-		// 내용
-	}
-%>
-<c:if test="${empty user_id}">
-내용
-</c:if>
-
-<%! int a = 10; %>
-<c:set var='a' value='10'/>
-<%
-	if(a > 10) {
-		// 실행문
-	} else if(a < 10) {
-		// 실행문
-	} else {
-		// 실행문
-	}
-%>
-<c:choose>
-	<c:when test="${a > 10}"></c:when>
-	<c:when test="${a < 10}"></c:when>
-	<c:otherwise></c:otherwise>
-</c:choose>
-
-JSP와 JSTL의 반복문
-<%
-	for(int i = 1; i <= 10; i++) {
-		// 실행문
-	}
-
-%>
-<c:forEach var="i" begin="1" end="10">
- 실행문
-</c:forEach>
- --%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +40,7 @@ JSP와 JSTL의 반복문
 									</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="boarder" items="${list}">
+							<c:forEach var="boarder" items="${map.list}">
 								<tr>
 									<td>${boarder.boarder_id}</td>
 									<td><a href="${path}/bbs/view?boarder_id=${boarder.boarder_id}">${boarder.title}</a></td>
@@ -100,23 +53,23 @@ JSP와 JSTL의 반복문
 				</table>
 				<ul class="pagination">
 					
-					<c:if test="${paging.pageNumber > 5}">
-						<li><a href="./bbs?pageNum=${paging.before }"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
+					<c:if test="${map.paging.pageNumber > 5}">
+						<li><a href="./bbs?pageNumber=${map.paging.before }"><span class="glyphicon glyphicon-triangle-left"></span></a></li>
 					</c:if>
 					
-					<c:forEach var="i" begin="${paging.minPage }" end="${paging.maxPage }">
+					<c:forEach var="i" begin="${map.paging.minPage }" end="${map.paging.maxPage }">
 					
-					<c:if test="${i == paging.pageNumber}">
+					<c:if test="${i == map.paging.pageNumber}">
 					<li class="active"><a>${i}</a></li>
 					</c:if>
-					<c:if test="${i != paging.pageNumber}">
-					<li><a href="./bbs?pageNum=${i}">${i}</a></li>
+					<c:if test="${i != map.paging.pageNumber}">
+					<li><a href="./bbs?pageNumber=${i}">${i}</a></li>
 					</c:if>
 					</c:forEach>
 
 					
-					<c:if test="${paging.next}">
-					<li><a href="./bbs?pageNum=${paging.forward }"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+					<c:if test="${map.paging.next}">
+					<li><a href="./bbs?pageNumber=${map.paging.forward }"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
 					</c:if>
 				</ul>
 				<a href = "${path}/bbs/write" class = "btn btn-default pull-right">글쓰기</a>

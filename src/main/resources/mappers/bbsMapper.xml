@@ -103,5 +103,26 @@
 		WHERE boarder_id = #{boarder_id}
 	</update>
 	
+	<!-- 게시글 최댓값 검색 SQL -->
+	<select id="getMaxBoarder_id" resultType="_int">
+		SELECT IFNULL(MAX(boarder_id), 0)
+		FROM BOARDER
+	</select>
 	
+	<!-- 게시글 리스트 10개 검색 SQL -->
+	<select id="getBbsList" resultType="Boarder">
+		SELECT *
+		FROM BOARDER 
+		WHERE boarder_id <![CDATA[<=]]> #{boarder_id}
+		AND available = 0
+		ORDER BY boarder_id DESC
+		LIMIT 10
+	</select>
+	
+	<!-- 게시글 삭제 처리 SQL -->
+	<update id="deleteBoarder">
+		UPDATE BOARDER
+		SET available = 1
+		WHERE boarder_id = #{boarder_id}
+	</update>
 </mapper>
