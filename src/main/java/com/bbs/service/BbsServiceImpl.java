@@ -120,8 +120,10 @@ public class BbsServiceImpl implements BbsService {
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		List<Boarder> list = dao.getBbsList(dao.getMaxBoarder_id() - (pageNumber - 1) * 10);
-		Paging paging = new Paging(pageNumber, dao.getMaxBoarder_id());
+		int max = dao.getMaxBoarder_id();
+		
+		List<Boarder> list = dao.getBbsList(max - (pageNumber - 1) * 10);
+		Paging paging = new Paging(pageNumber, max);
 		
 		map.put("list", list);
 		map.put("paging", paging);
